@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fayyad Mango Store</title>
+        <style>
+            html body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background-image: url();
+
+            }
+            footer {
+                background-color: #f1f1f1;
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+                height: 300px;
+                position: relative;
+                top: 200px;
+                right: 10px;
+            }
+            #Products {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                padding: 20px;
+                position: relative; /* Ensure parent is positioned for absolute child */
+                top: 100px;
+            }
+            .product {
+                border: 2px;
+                border-color: black;
+                padding: 17px;
+                margin: 10px;
+                width: 327px;
+                text-align: center;
+                background-image: url(https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/crate.png);
+                
+            }
+            #full_height {
+                background-color: rgba(255, 255, 255, 0.809);
+                width: 50%;
+                height: 1000px; /* Fixed height for visibility */
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
+            #checkout_panel{
+                width: 25%;
+                background-color: transparent;
+                height: 80%;
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+            #order_item {
+                background-color: black;
+            }
+            .img{
+                text-align: center;
+            }
+            .logo {
+                position: relative;
+                width: 150px; /* Size of the logo */
+                left: 30px;
+            }
+            .price{
+                padding: 5px ;
+            }
+
+            .order_item{
+                margin: 20px;
+                width: 25% ;
+                padding: 10px;
+                border: 5px;
+                border-color: black;
+            }
+            .close {
+                position: relative;
+                left: 550px;
+                top: 20px;
+            }
+            .my_cart {
+                position: relative;
+                left: 250px;
+                top: -45px;
+                width: 100px;
+            }
+            .cart_button  {
+                position: relative;
+                left: 550px;
+                top: -45px;
+            }
+
+            .cart_button > h1{
+                text-align: center;
+                top: 20px;
+            }
+            .footer{
+                background-color: black;
+                position: relative;
+            }
+            p1{
+                color: white;
+            }
+            p2{
+                color: white;
+            }
+            nav {
+                background-color:  rgba(255, 255, 255, 0.453);
+                top: -2px;
+                transition: background-color 0.5s ease;
+                opacity: 1;
+                position: relative;
+            }
+
+            promo{
+                width: 20px;
+                position: relative;
+                top: -100px;
+            }
+
+            .banner{
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                overflow: hidden;
+                background-position: center;
+                background-size: cover;
+                text-align: center;
+            }
+
+            video{
+                min-width: 100%; /* Ensure video covers the entire width */
+                min-height: 100%; /* Ensure video covers the entire height */
+                width: auto;
+                height: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
+            }
+            html, body {
+                overflow-x: hidden;
+                overflow-y: hidden;
+            }
+            .subtotal {
+                position: relative;
+                align-items: center;
+                top: -300px;
+                border: 2px;
+                right: 35px;
+                border-color: black;
+            }
+            .subtotal > p{
+                font-size: 40px;
+                text-align: center;
+                border: 2px;
+                border-color: black;
+            }
+            .check_button{
+                position: relative;
+                top: -340px;
+                left: 225px;
+                margin: 25px;
+                border-radius: 10px;
+                background-color: black;
+                padding: 10px;
+                border-color: black;
+                color: white;
+            }
+
+            .checkout{
+                background-image: url(https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/mango-still-life_23-2151542245.jpg.avif);
+                position: relative;
+                height: 100%;
+                width: 100;
+            }
+
+            footer{
+                position: relative;
+                padding: 30px;
+            }
+
+            .wel{
+                position: relative;
+                width: 100vw; /* Full viewport width */
+                height: 100vh; /* Full viewport height */
+                display: flex; /* Centering content */
+                justify-content: center; /* Centering content horizontally */
+                align-items: center; /* Centering content vertically */
+                background-image: url(https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/mango-still-life_23-2151542245.jpg.avif);
+                top: -245px;}
+
+            .form_div{
+                max-width: 400px;
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            opacity: 90%;
+            position: relative;
+            }
+
+            input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px ;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            }
+            button[type="submit"]{
+                width: 100%;
+            background-color: black;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            }
+
+            .form_div{
+                position: relative;
+                top: 80px;
+
+            }
+
+            footer > h1{
+                position: relative;
+            }
+
+
+            @media screen and (max-width: 600px) {
+             .cart_button {
+                position: relative;
+                left: 25%;
+                top: -40px;
+            }
+
+            nav{
+                width: 100%;
+                box-sizing: border-box;
+                padding: 10px 20px;
+            }
+
+            html, body{
+                margin: 0;
+                padding: 0;
+            }
+
+            .close{
+                position: relative;
+                left: 150px;
+                top: 2px;
+            }
+            .subtotal {
+                position: relative;
+                align-items: center;
+                left: 5px;
+                font-size: 10px;
+            }
+            .subtotal > p {
+                font-size: 23px;
+                text-align: center;
+                border: 2px;
+                border-color: black;
+            }
+            .total_text{
+                text-align: center;
+                color: black;
+                font-size: small;
+            }
+
+            .my_cart{
+                position: relative;
+                left: 20px;
+            }
+            .check_button{
+                left:  2px;
+
+            }
+            .promo{
+                width: 50px;
+                top: -100px;
+                position: relative;
+                right: 300px;
+            }
+            .footer{
+                background-color: black;
+                width: 400px;
+                top: 100px;
+                }
+
+            footer > div> p1{
+                color: white;
+                left: 90px;
+                top: -120px;
+                position: relative;
+                font-size: 10px;
+            }
+            .wel{
+                position: relative;
+                top: -600px;
+            }
+
+            #Products{
+                top: 10px;
+
+            }
+
+            
+
+
+            @media screen and (max-width: 400px) {
+
+                #Products{
+                    width: 380px;
+                    right: 15px;
+                    top: 1.5px;
+                }
+                .subtotal{
+                    right: 3px;
+                }
+                .subtotal > p {
+                font-size: 20px;
+                text-align: center;
+                border: 2px;
+                border-color: black;
+                }
+                .cart_button{
+                    right: 10px;
+                    top: -40px;
+                }
+
+                .footer{
+                    background-color: black;
+                    width: 400px;
+                    position: relative;
+                    padding: 5px;
+                    top: 10px;
+                    margin: 0;
+                    align-items: center;
+                }
+
+                .footer > div > p1{
+                    font-size: 10px;
+                    top: 50px;
+                    position: relative;
+                    align-items: center;
+
+                }
+
+                .promo{
+                    width: 50px;
+                    top: -75px;
+                    position: relative;
+                    right: 260px;
+                }
+
+            
+            }
+
+
+}       
+
+
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            <video autoplay loop muted plays-inline>
+                <source src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/background_final.mp4" type="video/mp4">
+            </video>
+        </div>
+        <noscript>JavaScript has to be enabled to run this application</noscript>
+        <nav>
+            <div class="img">
+                <img class="logo" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/logo.png">
+                <img class="cart_button"  id="cart_button" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/cart-check.svg">
+            </div>
+        </nav>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("wel").style.display = "none";
+            var description = document.getElementById("order-string");
+            var Item = [];
+            var Quantity = [];
+            var Price = [];
+            var panel = document.getElementById("checkout_panel");
+            var counter = 0;
+            var x = document.getElementById("cart_summary");
+            x.style.display = "none";
+            var clicked_buttons = document.getElementsByClassName("Cart");
+
+            function updateSubtotal() {
+                document.getElementById("my_cart")
+                var total = 0;
+                for (var i = 0; i < Price.length; i++) {
+                    total += Price[i]*Quantity[i]
+                }
+                document.getElementById("subtotal").innerHTML =`<p class="total_text"> Subtotal : ${total} EGP </p>`;
+                document.getElementById("total").value = `${total} EGP`
+            }
+
+            for (var i = 0; i < clicked_buttons.length; ++i) {
+                clicked_buttons[i].addEventListener('click', function(event) {
+                    var clicked_button_id = event.target.id;
+
+                    if (clicked_button_id === "ewes_cart") {
+                        var quantity = document.getElementById("ewes_quantity").value;
+                        var price = document.getElementById("ewes_price").innerHTML;
+                        Item.push("Ewes");
+                        Quantity.push(parseFloat(quantity));
+                        Price.push(parseInt(price))
+                        x.style.display = "block";
+                        counter++;
+                        panel.innerHTML += `<div class='order_item'>
+                            <ul>
+                                <li> ${Item[counter-1]}__${Quantity[counter-1]}kg ${Price[counter-1]}__EGP </li>
+                                <button class="remove"> Remove</button>
+                            </ul>
+                            </div>`;
+
+                        description.value += `${Item[counter-1]} ${Quantity[counter-1]} kg; `
+                        updateSubtotal();
+                    }
+
+                    if (clicked_button_id === "taymour_cart") {
+                        var quantity = document.getElementById("taymour_quantity").value;
+                        var price = document.getElementById("taymour_price").innerHTML;
+                        Item.push("Taymour");
+                        Quantity.push(parseFloat(quantity));
+                        Price.push(parseInt(price));
+                        x.style.display = "block";
+                        counter++;
+                        panel.innerHTML += `<div class='order_item'>
+                            <ul>
+                                <li> ${Item[counter-1]}__${Quantity[counter-1]}kg ${Price[counter-1] * Quantity[counter-1]}__EGP </li>
+                                <button class="remove"> Remove</button>
+                            </ul>
+                            </div>`;
+                        description.value += `${Item[counter-1]} ${Quantity[counter-1]} kg; `
+                        updateSubtotal();
+                    }
+
+                    if (clicked_button_id === "fass_cart") {
+                        var quantity = document.getElementById("fass_quantity").value;
+                        var price = document.getElementById("fass_price").innerHTML;
+                        Item.push("Fass");
+                        Quantity.push(parseFloat(quantity));
+                        Price.push(parseInt(price) * parseFloat(quantity));
+                        x.style.display = "block";
+                        counter++;
+                        panel.innerHTML += `<div class='order_item'>
+                            <ul>
+                                <li> ${Item[counter-1]}__${Quantity[counter-1]}kg ${Price[counter-1]}__EGP </li>
+                                <button class="remove"> Remove</button>
+                            </ul>
+                            </div>`;
+                        description.value += `${Item[counter-1]} ${Quantity[counter-1]} kg; `
+                        updateSubtotal();
+                    }
+                });
+            }
+        });
+        </script>
+        </script>
+        <section id="cart_summary">
+            <div id="full_height">
+                <img class="close" id="close" onclick="close()" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/x.svg" role="button">
+                <h1 class="my_cart">My Cart</h1>
+                <div id="checkout_panel">
+                </div>   
+                <div class="subtotal" id="subtotal"></div> 
+                <button class="check_button" id="check_button">Proceed to Checkout</button>
+            </div>
+        </section>
+        <div id="Products">
+            <div class="product">
+                <h2 class="product_name">Ewes Mango</h2>
+                <p class="price" id="ewes_price">Wait for price to show</p>
+                <label class="quantity" for="quantity">Quantity</label>
+                <select name="quantity" id="ewes_quantity">
+                    <option value="5">5</option>
+                    <option value="5.5">5.5</option>
+                    <option value="6">6</option>
+                    <option value="6.5">6.5</option>
+                    <option value="7">7</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8">8</option>
+                    <option value="8.5">8.5</option>
+                    <option value="9">9</option>
+                    <option value="9.5">9.5</option>
+                    <option value="10">10</option>
+                </select>
+                <label>Kg</label>
+                <button id="ewes_cart" class="Cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h2>Taymour Mango</h2>
+                <p class="price"  id="taymour_price">Wait for price to show</p>
+                <label for="quantity">Quantity</label>
+                <select name="quantity" id="taymour_quantity">
+                    <option value="5">5</option>
+                    <option value="5.5">5.5</option>
+                    <option value="6">6</option>
+                    <option value="6.5">6.5</option>
+                    <option value="7">7</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8">8</option>
+                    <option value="8.5">8.5</option>
+                    <option value="9">9</option>
+                    <option value="9.5">9.5</option>
+                    <option value="10">10</option>
+                </select>
+                <label>Kg</label>
+                <button id="taymour_cart" class="Cart">Add to Cart</button>
+            </div>
+            <div class="product">
+                <h2>Fass Mango</h2>
+                <p class="price" id="fass_price">Wait for price to show</p>
+                <label for="quantity">Quantity</label>
+                <select name="quantity" id="fass_quantity">
+                    <option value="5">5</option>
+                    <option value="5.5">5.5</option>
+                    <option value="6">6</option>
+                    <option value="6.5">6.5</option>
+                    <option value="7">7</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8">8</option>
+                    <option value="8.5">8.5</option>
+                    <option value="9">9</option>
+                    <option value="9.5">9.5</option>
+                    <option value="10">10</option>
+                </select>
+                <label>Kg</label>
+                <button class="Cart" id="fass_cart">Add to Cart
+                </button>
+            </div>
+            <script>
+                checkout = document.getElementById("check_button");
+                show = document.getElementById("cart_summary")
+                document.getElementById("cart_button").addEventListener("click", () => {
+                    show.style.display = "block";
+                })
+
+                document.getElementById("close").addEventListener("click", () => {
+                    show.style.display = "none";
+                })
+
+                checkout.addEventListener("click", () => {
+                    document.getElementById("wel").style.display = "block";
+                    document.getElementById("cart_summary").style.display = "none";
+                    
+                })
+                
+
+            </script>
+        </div>
+    </body>
+
+    <section class="wel" id="wel">
+        <div id="form_div" class="form_div">
+            <form id="order-submission" method="post">
+                <label>Please enter your name</label>
+                <input id="name" type="text" placeholder="name" required>
+                
+                <label>Please enter your lastname</label>
+                <input id="lastname" type="text" placeholder="lastname" required>
+
+                <label>Please enter your phonenumber</label>
+                <input id="phonenumber" type="text" placeholder="number" required maxlength="11">
+
+                <label> Please enter your address</label>
+                <input type="checkbox" name="Use Current Location">
+                <input id="address" type="address" placeholder="address" required>
+
+                <label>Order details</label>
+                <input type="text" id="order-string" name="total" value="" readonly>
+                <input  type="text" id="total" name="total" value="0" readonly>
+
+                <button id="submit"  type="submit">Place Order</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer" id="footer">
+        <h1>Checkout</h1>
+        <div>
+           <p1> ©Fayyad Mango 2024</p1>
+           <p2>All Rights Reserved</p2>
+           <img class="promo" id="promo" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/the cybertechts white.png">
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById("order-submission").addEventListener("submit", function(e){
+            e.preventDefault()
+
+            name = document.getElementById('name').value
+            lastname = document.getElementById('lastname').value
+            address = document.getElementById("address").value
+            order_description  = document.getElementById("order-string").value
+            total  = document.getElementById("total").value 
+            number = document.getElementById("phonenumber").value
+
+            const HarvestedData = new FormData();
+            HarvestedData.append('name', name)
+            HarvestedData.append('lastname', lastname)
+            HarvestedData.append('address', address)
+            HarvestedData.append("order_description", order_description)
+            HarvestedData.append("number", number)
+            HarvestedData.append("total", total)
+            document.getElementById("submit").disabled = "true"
+
+            fetch("http://127.0.0.1:8000/client_portal/", {
+                method: "POST", 
+                body: HarvestedData
+            })
+
+            
+
+        
+        })
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch("http://127.0.0.1:8000/client_portal/prices", {
+                method: "GET"
+            })
+            .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+            })
+
+            .then(data => {
+                for(i = 0; i < data.length; ++i){
+                    if(data[i].name === "Ewes"){
+                        document.getElementById("ewes_price").innerHTML = `${data[i].price} EGP`
+                    }
+                    if(data[i].name === "Taymour"){
+                        document.getElementById("taymour_price").innerHTML = `${data[i].price} EGP`
+                    }
+                    if(data[i].name === "Fass"){
+                        document.getElementById("fass_price").innerHTML = `${data[i].price} EGP`
+                    }
+                }
+            })
+        })
+    </script>
+</html>
