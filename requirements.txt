@@ -1,4 +1,4 @@
-pip install --upgrade -r /vercel/path0/requirements.txt
+
 altgraph==0.17.4
 annotated-types==0.6.0
 asgiref==3.7.2
