@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+    <div class="container_logo">
+        <img class="logo" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/logo.png">
+        <title>Fayyad Mango's Admin Dashboard</title>
+
+    </div>
+    <style>
+        /* Style for the background image */
+        .container_logo {
+            text-align: center;
+        }
+        .background-img {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            object-fit: cover; /* Ensure image covers the entire background */
+        }
+
+        /* General style for the page and form container */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif; /* Use Arial as the font family */
+            background-color: #f0f0f0; /* Light gray background color for the body */
+        }
+
+        h1 {
+            text-align: center; /* Center the heading */
+            color: #333; /* Dark text color */
+            margin: 20px 0; /* Margin for the heading */
+        }
+
+        /* Style for the form container */
+        .form-container {
+            max-width: 400px; /* Fixed maximum width for the form container */
+            margin: 20px auto; /* Center the container horizontally with vertical margin */
+            padding: 20px; /* Padding inside the container */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f9f9f9; /* Light background color */
+            opacity: 90%;
+        }
+
+        /* Style for input fields */
+        input, select, textarea {
+            width: 100%; /* Inputs take the full width of the container */
+            padding: 10px; /* Padding for comfort */
+            margin: 8px 0; /* Spacing between elements */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 4px; /* Rounded corners */
+            box-sizing: border-box; /* Ensures consistent sizing */
+        }
+
+        /* Style for the submit button */
+        button[type="submit"] {
+            width: 100%; /* Button spans the full width of the container */
+            background-color: black; /* Green background */
+            color: white; /* White text */
+            padding: 14px 20px; /* Padding for the button */
+            border: none; /* No border */
+            border-radius: 4px; /* Rounded corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition on hover */
+        }
+
+        /* Hover effect for the submit button */
+        button[type="submit"]:hover {
+            background-color: #45a049; /* Slightly darker green on hover */
+        }
+        .logo {
+            width: 150px; /* Size of the logo */
+
+        }
+        .admin {
+            text-align: center;
+            max-width: 1100px; /* Fixed maximum width for the form container */
+            margin: 20px auto; /* Center the container horizontally with vertical margin */
+            padding: 20px; /* Padding inside the container */
+            border: 1px solid #ccc; /* Light border */
+            border-radius: 5px; /* Rounded corners */
+            background-color: #f9f9f9; /* Light background color */
+            opacity: 90%;
+        }
+        .date_picker{            position: absolute; /* Position the picker relative to the admin panel */
+            top: 20px; /* Distance from the top */
+            left: 30px; /* Distance from the left */
+            width: 150px; /* Set width */
+            text-align: center; /* Center the text */
+            bottom: 20px;
+        }
+        .reservation {
+            margin: 20px;
+        }
+        .highlightgreen{
+            color: green;
+        }
+        .highlightred {
+            color: red;
+        }
+        .generate{
+            top: -5px;
+            left: 50px;
+            position: absolute;
+        }
+
+        .order{
+            border: 3px;
+            border-color: black;
+        }
+        h2{
+            text-align: center;
+            color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <h2>Orders</h2>
+    <section class="admin_panel" id="admin_panel">
+        <div class="admin" id="admin">
+            <button id="refresh">Refresh</button>
+            <ol id="list"> </ol>
+        </div>
+    </section>
+    <h2>Fulfilled Orders </h2>
+    <section class="admin_panel">
+        <div id="admin1" class="admin">
+            <ol id="list1"></ol>
+        </div>
+    </section>
+    <h2>Prices Control Panel</h2>
+    <section class="admin_panel">
+        <div class="admin">
+            <form method="post" id="update">
+                <input id="ewes_price" type="text" placeholder="Ewes Price = 180 EGP" >
+                <input id="taymour_price" type="text" placeholder="Taymour Price = 50 EGP">
+                <input id="fass_price" type="text" placeholder="Fass Price = 70 EGP">
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          // Element to listen for button clicks
+const admin_panel = document.getElementById('admin_panel');
+
+admin_panel.addEventListener('click', (event) => {
+    const clicked_element = event.target;
+
+    if (clicked_element.tagName === 'BUTTON' && clicked_element.classList.contains("prepared"))   {
+        
+        fetch("updatestatus", {
+            method: 'POST', 
+            body: JSON.stringify({order: clicked_element.id}),
+        })//Do not touch, perfect block
+
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Ensure the response is parsed as JSON
+        })
+        .then(() => { // Access the parsed data
+            load();
+            load1();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.'); // Handle errors gracefully
+        });
+    }
+    if (clicked_element.tagName === 'BUTTON' && clicked_element.classList.contains("delivering"))   {
+        
+        fetch("updatestatus", {
+            method: 'POST', 
+            body: JSON.stringify({order: clicked_element.id}),
+        })//Do not touch, perfect block
+
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Ensure the response is parsed as JSON
+        })
+        .then(() => { // Access the parsed data
+            load();
+            load1();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.'); // Handle errors gracefully
+        });
+    }
+    if (clicked_element.tagName === 'BUTTON' && clicked_element.classList.contains("delivered"))   {
+        
+        fetch("updatestatus", {
+            method: 'POST', 
+            body: JSON.stringify({order: clicked_element.id}),
+        })//Do not touch, perfect block
+
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json(); // Ensure the response is parsed as JSON
+        })
+        .then(() => { // Access the parsed data
+            load();
+            load1();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.'); // Handle errors gracefully
+        });
+    }
+
+});  
+        })
+// Function to get CSRF token from a meta tag
+
+
+    </script>
+    <img class="background-img" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/IMG_2736.JPG">
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+    // Function to log the id of the clicked button
+    function logButtonId(event){
+        console.log(event.target.id);
+    }
+
+    // Select all buttons with the class 'clickable-button'
+    const buttons = document.querySelectorAll(".prepared");
+
+    // Attach the click event listener to each button
+    buttons.forEach(button => {
+        button.addEventListener("click", logButtonId);
+    });
+});
+</script>
+<script>
+    function load(){    
+        fetch("http://127.0.0.1:8000/client_portal/dashboard", {
+            method: "GET"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById("list").innerHTML = ""
+            for(i = 0; i <= data.length;++i){
+                console.log( data[i].name, data[i].order_description);
+                button_prepared = "Prepared" // Process the data as needed
+                button_outfordelivery = "Delivering"
+                button_prepared_id = `p${data[i].id}`
+                button_outfordelivery_id = `d${data[i].id}`
+                button_delivered = `a${data[i].id}`
+                button_arrived = "Delivered"
+                document.getElementById("list").innerHTML += `<ol  class = "order" id="list">  ${data[i].id} ${data[i].name} ${data[i].lastname} ${data[i].description} ${data[i].phonenumber}  <button class="prepared" id= ${button_prepared_id}> ${button_prepared}</button> <button class="delivering" id= ${button_outfordelivery_id}> ${button_outfordelivery}</button> <button class="delivered" id=${button_delivered}>${button_arrived}</button>  </ol>`;
+                if(data[i].status ==="Prepared"){
+                    document.getElementById(`${button_prepared_id}`).style.color = "green"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "red"
+
+                }   
+                if(data[i].status === "Out for Delivery") {
+                    document.getElementById(`${button_prepared_id}`).style.color = "green"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "green" 
+                }
+                if(data[i].status === "Created"){
+                    document.getElementById(`${button_prepared_id}`).style.color = "red"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "red" 
+                }
+             }
+            
+        })
+        .catch(error => {
+            console.error('There was an error with the fetch operation:', error);
+        });
+    };
+    function load1(){    
+        fetch("http://127.0.0.1:8000/client_portal/dashboard1", {
+            method: "GET"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById("list1").innerHTML = ""
+            for(i = 0; i <= data.length;++i){
+                console.log( data[i].name, data[i].order_description);
+                document.getElementById("list1").innerHTML += `<ol  class = "order" id="list">  ${data[i].id} ${data[i].name} ${data[i].lastname} ${data[i].description} ${data[i].phonenumber}`;
+                if(data[i].status ==="Prepared"){
+                    document.getElementById(`${button_prepared_id}`).style.color = "green"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "red"
+
+                }   
+                if(data[i].status === "Out for Delivery") {
+                    document.getElementById(`${button_prepared_id}`).style.color = "green"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "green" 
+                }
+                if(data[i].status === "Created"){
+                    
+                }
+             }
+            
+        })
+        .catch(error => {
+            console.error('There was an error with the fetch operation:', error);
+        });
+    };
+
+
+    load();
+    load1();
+</script>
+<script>
+        function load1(){    
+        fetch("http://127.0.0.1:8000/client_portal/dashboard1", {
+            method: "GET"
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            document.getElementById("list1").innerHTML = ""
+            for(i = 0; i <= data.length;++i){
+                console.log( data[i].name, data[i].order_description);
+                document.getElementById("list1").innerHTML += `<ol  class = "order" id="list">  ${data[i].id} ${data[i].name} ${data[i].lastname} ${data[i].description} ${data[i].phonenumber}`;
+                if(data[i].status ==="Prepared"){
+                    document.getElementById(`${button_prepared_id}`).style.color = "green"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "red"
+
+                }   
+                if(data[i].status === "Out for Delivery") {
+                    document.getElementById(`${button_prepared_id}`).style.color = "green"
+                    document.getElementById(`${button_outfordelivery_id}`).style.color = "green" 
+                }
+                if(data[i].status === "Created"){
+                    
+                }
+             }
+            
+        })
+        .catch(error => {
+            console.error('There was an error with the fetch operation:', error);
+        });
+    };
+</script>
+
+<script>
+    document.getElementById("update").addEventListener("submit", function(e){
+    e.preventDefault()
+
+        ewes = document.getElementById('ewes_price').value
+        taymour = document.getElementById("taymour_price").value
+        fass = document.getElementById("fass_price").value
+
+        const HarvestedData = new FormData();
+        HarvestedData.append('new_ewes_price', ewes)
+        HarvestedData.append('new_taymour_price', taymour)
+        HarvestedData.append('new_fass_price', fass)
+
+        fetch("http://127.0.0.1:8000/client_portal/prices", {
+            method: "POST", 
+            body: HarvestedData
+        })
+        
+
+    
+    })
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch("http://127.0.0.1:8000/client_portal/prices", {
+            method: "GET"
+        })
+
+        .then(request => {
+            return request.json()
+        })
+
+        .then(data => {
+            for(i = 0; i < data.length; ++i){
+                if(data[i].name === "Ewes"){
+                    document.getElementById("ewes_price").placeholder = `Ewes Price = ${data[i].price} EGP`
+                }
+                if(data[i].name === "Taymour"){
+                    document.getElementById("taymour_price").placeholder = `Taymour Price = ${data[i].price} EGP`
+                }
+                if(data[i].name === "Fass"){
+                    document.getElementById("fass_price").placeholder = `Fass Price = ${data[i].price} EGP`
+                }
+            }
+        })
+    })
+</script>
+
+</html>
+

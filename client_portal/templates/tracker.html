@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fayyad Mango Tracking</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            html body {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background: linear-gradient(orange, yellow);
+
+            }
+            footer {
+                background-color: #f1f1f1;
+                padding: 10px;
+                text-align: center;
+                width: 100%;
+                height: 300px;
+                position: relative;
+                top: 200px;
+                right: 10px;
+            }
+            #Products {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                padding: 20px;
+                position: relative; /* Ensure parent is positioned for absolute child */
+                top: 100px;
+            }
+            .product {
+                border: 2px;
+                border-color: black;
+                padding: 17px;
+                margin: 10px;
+                width: 327px;
+                text-align: center;
+                background-image: url(https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/crate.png);
+                
+            }
+            #full_height {
+                background-color: rgba(255, 255, 255, 0.809);
+                width: 50%;
+                height: 1000px; /* Fixed height for visibility */
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 10;
+            }
+            #checkout_panel{
+                width: 25%;
+                background-color: transparent;
+                height: 80%;
+                position: relative;
+                top: 0;
+                left: 0;
+            }
+            #order_item {
+                background-color: black;
+            }
+            .img{
+                text-align: center;
+            }
+            .logo {
+                position: relative;
+                width: 150px; /* Size of the logo */
+                align-items: center;
+            }
+            .price{
+                padding: 5px ;
+            }
+
+            .order_item{
+                margin: 20px;
+                width: 25% ;
+                padding: 10px;
+                border: 5px;
+                border-color: black;
+            }
+            .close {
+                position: relative;
+                left: 550px;
+                top: 20px;
+            }
+            .my_cart {
+                position: relative;
+                left: 250px;
+                top: -45px;
+                width: 100px;
+            }
+            .cart_button  {
+                position: relative;
+                left: 550px;
+                top: -45px;
+            }
+
+            .cart_button > h1{
+                text-align: center;
+                top: 20px;
+            }
+            .footer{
+                background-color: black;
+                position: relative;
+            }
+            p1{
+                color: white;
+            }
+            p2{
+                color: white;
+            }
+            nav {
+                background-color:  rgba(255, 255, 255, 0.453);
+                top: -2px;
+                transition: background-color 0.5s ease;
+                opacity: 1;
+                position: relative;
+            }
+
+            promo{
+                width: 20px;
+                position: relative;
+                top: -100px;
+            }
+
+            .banner{
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                overflow: hidden;
+                background-position: center;
+                background-size: cover;
+                text-align: center;
+            }
+
+            video{
+                min-width: 100%; /* Ensure video covers the entire width */
+                min-height: 100%; /* Ensure video covers the entire height */
+                width: auto;
+                height: auto;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                object-fit: cover;
+            }
+            html, body {
+                overflow-x: hidden;
+                overflow-y: hidden;
+            }
+            .subtotal {
+                position: relative;
+                align-items: center;
+                top: -300px;
+                border: 2px;
+                right: 35px;
+                border-color: black;
+            }
+            .subtotal > p{
+                font-size: 40px;
+                text-align: center;
+                border: 2px;
+                border-color: black;
+            }
+            .check_button{
+                position: relative;
+                top: -340px;
+                left: 225px;
+                margin: 25px;
+                border-radius: 10px;
+                background-color: black;
+                padding: 10px;
+                border-color: black;
+                color: white;
+            }
+
+            .checkout{
+                background-image: url(/Users/mouradghaly/Downloads/fayyad_mango/IMG_2737.JPG);
+                position: relative;
+                height: 100%;
+                width: 100;
+            }
+
+            footer{
+                position: relative;
+                padding: 30px;
+            }
+
+            .wel{
+                position: relative;
+                width: 100vw; /* Full viewport width */
+                height: 100vh; /* Full viewport height */
+                display: flex; /* Centering content */
+                justify-content: center; /* Centering content horizontally */
+                align-items: center; /* Centering content vertically */
+                background-image: url(/Users/mouradghaly/Downloads/fayyad_mango/mango-still-life_23-2151542163.jpg.avif);
+                top: -375px;}
+
+            .form_div{
+                max-width: 400px;
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            opacity: 90%;
+            position: relative;
+            }
+
+            input {
+            width: 100%;
+            padding: 8px;
+            margin: 8px ;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            }
+            button[type="submit"]{
+                width: 100%;
+            background-color: black;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            }
+
+            .form_div{
+                position: relative;
+                top: 80px;
+                margin: 20px;
+
+            }
+
+            footer > h1{
+                position: relative;
+            }
+
+.progress-container {
+    width: 100%;
+    position: relative;
+    background-color: #e0e0e0;
+    border-radius: 25px;
+    border-color: #4caf50;
+    overflow: hidden;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+}
+
+.progress-bar {
+    height: 30px;
+    width: 0%;
+    background: linear-gradient(rgb(50, 243, 2), rgb(1, 208, 8));
+    text-align: center;
+    line-height: 30px;
+    color: white;
+    border-radius: 25px 0 0 25px;
+    border-color: 4caf50;
+}
+
+.progress-dots {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    padding: 0 10px;
+}
+
+.dot {
+    width: 30px;
+    height: 30px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.dot img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+.flex-container {
+    display: flex;
+    flex-direction: row; /* Ensure items are laid out in a row */
+    gap: 10px; /* Space between items */
+
+    margin: 5px;
+}
+
+.flex-container p {
+    flex: 1 1 calc(33.333% - 20px); /* Adjusts the width to 1/3 minus gaps */
+    margin: 10px;
+}
+
+
+
+            @media screen and (max-width: 600px) {
+             .cart_button {
+                position: relative;
+                left: 25%;
+                top: -40px;
+            }
+
+            nav{
+                width: 100%;
+                box-sizing: border-box;
+                padding: 10px 20px;
+            }
+
+            html, body{
+                margin: 0;
+                padding: 0;
+            }
+
+            .close{
+                position: relative;
+                left: 150px;
+                top: 2px;
+            }
+            .subtotal {
+                position: relative;
+                align-items: center;
+                left: 5px;
+                font-size: 10px;
+            }
+            .subtotal > p {
+                font-size: 23px;
+                text-align: center;
+                border: 2px;
+                border-color: black;
+            }
+            .total_text{
+                text-align: center;
+                color: black;
+                font-size: small;
+            }
+
+            .my_cart{
+                position: relative;
+                left: 20px;
+            }
+            .check_button{
+                left:  2px;
+
+            }
+            .promo{
+                width: 50px;
+                top: -100px;
+                position: relative;
+                right: 300px;
+            }
+            .footer{
+                background-color: black;
+                width: 400px;
+                top: 100px;
+                }
+
+            footer > div> p1{
+                color: white;
+                left: 90px;
+                top: -120px;
+                position: relative;
+                font-size: 10px;
+            }
+            .wel{
+                position: relative;
+                top: -300px;
+            }
+
+            #Products{
+                top: 10px;
+
+            }
+
+            
+
+
+            @media screen and (max-width: 400px) {
+
+                #Products{
+                    width: 380px;
+                    right: 15px;
+                    top: 1.5px;
+                }
+                .subtotal{
+                    right: 3px;
+                }
+                .subtotal > p {
+                font-size: 20px;
+                text-align: center;
+                border: 2px;
+                border-color: black;
+                }
+                .cart_button{
+                    right: 10px;
+                    top: -40px;
+                }
+
+                .footer{
+                    background-color: black;
+                    width: 400px;
+                    position: relative;
+                    padding: 5px;
+                    top: 10px;
+                    margin: 0;
+                    align-items: center;
+                }
+
+                .footer > div > p1{
+                    font-size: 10px;
+                    top: 100px;
+                    position: relative;
+                    align-items: center;
+
+                }
+
+                .promo{
+                    width: 50px;
+                    top: -75px;
+                    position: relative;
+                    right: 230px;
+                }
+
+            
+            }
+
+
+
+
+}       
+
+
+        </style>
+    </head>
+    <div class="img">
+        <img class="logo" src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/logo.png">
+    </div>
+    <body>
+
+        <section class="wel" id="wel">
+            <div id="form_div" class="form_div">
+                <form id="order-tracker" method="post">
+                    <label>Please enter your order number</label>
+                    <input id="order_number" type="text" placeholder="Order Number" required>
+                    <div class="flex-container">
+                        <p>Created</p>
+                        <p>Prepared</p>
+                        <p>Delivering</p>
+                        <p>Delivered</p>
+                    </div>
+                    <div class="progress-container" id="progress-container">
+                        <div class="progress-bar" id="progressBar"></div>
+                        <div class="progress-dots">
+                            <div class="dot" id="dot1"><img src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/bag.svg" alt="Stage 1"></div>
+                            <div class="dot" id="dot2"><img src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/box.svg" alt="Stage 2"></div>
+                            <div class="dot" id="dot3"><img src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/truck.svg" alt="Stage 3"></div>
+                            <div class="dot" id="dot4"><img src="https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/house-check.svg" alt="Stage 4"></div>
+                        </div>
+                    </div>
+                    <button id="submit"  type="submit">Track Order</button>
+                </form>
+            </div>
+        </section>
+    </body>
+    <script>
+        document.getElementById("progress-container").style.display = "none";
+        function setProgress(percent) {
+    const progressBar = document.getElementById('progressBar');
+    const dots = document.querySelectorAll('.dot');
+    const totalDots = dots.length;
+    const step = 100 / totalDots;
+    
+    progressBar.style.width = percent + '%';
+    
+    dots.forEach((dot, index) => {
+        if (percent >= step * (index + 1)) {
+            dot.style.borderColor = '#4caf50';
+        } else {
+            dot.style.borderColor = '#e0e0e0';
+        }
+    });
+}
+        document.getElementById("order-tracker").addEventListener("submit", function(e){
+            e.preventDefault()
+            fetch("http://127.0.0.1:8000/client_portal/track_order", {
+                method: 'POST', 
+                body: JSON.stringify({order: `${document.getElementById("order_number").value}`})
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                document.getElementById("progress-container").style.display = "block";
+                if(data["Status"] === "Created"){
+                    setProgress(15);
+                }
+                if(data["Status"] === "Prepared"){
+                    setProgress(40);
+                }
+                if(data["Status"] === "Out for Delivery"){
+                    setProgress(70);
+                }
+                if(data["Status"] === "Delivered"){
+                    setProgress(100);
+                }
+            })
+        })
+    </script>
+
+</html>
