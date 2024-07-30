@@ -492,7 +492,7 @@
 }
         document.getElementById("order-tracker").addEventListener("submit", function(e){
             e.preventDefault()
-            fetch("http://127.0.0.1:8000/client_portal/track_order", {
+            fetch("https://iftarramadan.onrender.com/client_portal/track_order", {
                 method: 'POST', 
                 body: JSON.stringify({order: `${document.getElementById("order_number").value}`})
             })
