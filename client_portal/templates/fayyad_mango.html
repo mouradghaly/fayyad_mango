@@ -632,7 +632,7 @@
             HarvestedData.append("total", total)
             document.getElementById("submit").disabled = "true"
 
-            fetch("http://127.0.0.1:8000/client_portal/", {
+            fetch("https://iftarramadan.onrender.com/client_portal/", {
                 method: "POST", 
                 body: HarvestedData
             })
@@ -644,7 +644,7 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            fetch("http://127.0.0.1:8000/client_portal/prices", {
+            fetch("https://iftarramadan.onrender.com/client_portal/prices", {
                 method: "GET"
             })
             .then(response => {
