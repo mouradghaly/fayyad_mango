@@ -289,7 +289,7 @@ admin_panel.addEventListener('click', (event) => {
         });
     };
     function load1(){    
-        fetch("http://127.0.0.1:8000/client_portal/dashboard1", {
+        fetch("https://iftarramadan.onrender.com/client_portal/dashboard1", {
             method: "GET"
         })
         .then(response => {
@@ -329,7 +329,7 @@ admin_panel.addEventListener('click', (event) => {
 </script>
 <script>
         function load1(){    
-        fetch("http://127.0.0.1:8000/client_portal/dashboard1", {
+        fetch("https://iftarramadan.onrender.com/client_portal/dashboard1", {
             method: "GET"
         })
         .then(response => {
@@ -377,7 +377,7 @@ admin_panel.addEventListener('click', (event) => {
         HarvestedData.append('new_taymour_price', taymour)
         HarvestedData.append('new_fass_price', fass)
 
-        fetch("http://127.0.0.1:8000/client_portal/prices", {
+        fetch("https://iftarramandan.onrender.com/client_portal/prices", {
             method: "POST", 
             body: HarvestedData
         })
@@ -389,7 +389,7 @@ admin_panel.addEventListener('click', (event) => {
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        fetch("http://127.0.0.1:8000/client_portal/prices", {
+        fetch("https://iftarramadan.onrender.com/client_portal/prices", {
             method: "GET"
         })
 
