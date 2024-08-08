@@ -39,7 +39,7 @@ def order(request):
         ###########################################################################################################################
         order = model(name = name, lastname = lastname, phonenumber = phonenumber, address = address, order_description=order_description, total=total, id= id)
         order.save()
-        return JsonResponse({"Status": "Order Created" })
+        return JsonResponse({"Status": "Order Created", "Id": id })
     else :
         return render(request, "fayyad_mango.html")
 
