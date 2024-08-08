@@ -608,16 +608,17 @@
             HarvestedData.append("number", number)
             HarvestedData.append("total", total)
             document.getElementById("submit").disabled = "true"
-
             fetch("https://iftarramadan.onrender.com/client_portal/", {
                 method: "POST", 
                 body: HarvestedData
             })
+
             .then(response => {
                 return response.json()
             })
+
             .then(data => {
-                if(data.Status === "Order Confirmed"){
+                if(data.Status === 'Order Created'){
                     document.getElementById("form_div").innerHTML = `<p  class = "confirmation" id="confirmation"> Order ${data.Id} Confirmed`;
                     document.getElementById("form_div").style.padding = "50px 50px 50px 50px";
                 }
