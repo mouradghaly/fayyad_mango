@@ -192,7 +192,6 @@
                 display: flex; /* Centering content */
                 justify-content: center; /* Centering content horizontally */
                 align-items: center; /* Centering content vertically */
-                background-image: url(https://raw.githubusercontent.com/mouradghaly/fayyad_mango/main/cdn/mango-still-life_23-2151542245.jpg.avif);
                 top: -245px;}
 
             .form_div{
@@ -204,6 +203,7 @@
             background-color: #f9f9f9;
             opacity: 90%;
             position: relative;
+            top: 40px
             }
 
             input {
@@ -502,15 +502,6 @@
                 <label class="quantity" for="quantity">Quantity</label>
                 <select name="quantity" id="ewes_quantity">
                     <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                    <option value="9.5">9.5</option>
                     <option value="10">10</option>
                 </select>
                 <label>Kg</label>
@@ -522,15 +513,6 @@
                 <label for="quantity">Quantity</label>
                 <select name="quantity" id="taymour_quantity">
                     <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                    <option value="9.5">9.5</option>
                     <option value="10">10</option>
                 </select>
                 <label>Kg</label>
@@ -542,15 +524,6 @@
                 <label for="quantity">Quantity</label>
                 <select name="quantity" id="fass_quantity">
                     <option value="5">5</option>
-                    <option value="5.5">5.5</option>
-                    <option value="6">6</option>
-                    <option value="6.5">6.5</option>
-                    <option value="7">7</option>
-                    <option value="7.5">7.5</option>
-                    <option value="8">8</option>
-                    <option value="8.5">8.5</option>
-                    <option value="9">9</option>
-                    <option value="9.5">9.5</option>
                     <option value="10">10</option>
                 </select>
                 <label>Kg</label>
@@ -597,7 +570,10 @@
 
                 <label>Order details</label>
                 <input type="text" id="order-string" name="total" value="" readonly>
+                <label>Order Total</label>
                 <input  type="text" id="total" name="total" value="0" readonly>
+                <label>Delivery Fees</label>
+                <input type="text" id="delivery-string" name="Delivery Fees" value="40 EGP" readonly>
 
                 <button id="submit"  type="submit">Place Order</button>
             </form>
@@ -636,6 +612,12 @@
             fetch("https://iftarramadan.onrender.com/client_portal/", {
                 method: "POST", 
                 body: HarvestedData
+            })
+            .then(data => {
+                if(data.Status === "Order Confirmed"){
+                    document.getElementById("form_div").innerHTML = `<p  class = "confirmation" id="confirmation"> Order ${data.Id} Confirmed`;
+                    document.getElementById("form_div").style.padding = "50px 50px 50px 50px";
+                }
             })
 
 
