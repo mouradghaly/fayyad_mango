@@ -613,6 +613,9 @@
                 method: "POST", 
                 body: HarvestedData
             })
+            .then(response => {
+                return response.json()
+            })
             .then(data => {
                 if(data.Status === "Order Confirmed"){
                     document.getElementById("form_div").innerHTML = `<p  class = "confirmation" id="confirmation"> Order ${data.Id} Confirmed`;
