@@ -12,7 +12,7 @@ class model(models.Model):
     name = models.CharField(max_length=64)
     lastname = models.CharField(max_length=64)
     phonenumber = models.CharField(max_length=11)
-    address = models.CharField(max_length=70)
+    address = models.CharField()
     order_description = models.CharField(max_length=50)
     total = models.CharField(max_length=10)
     id = models.IntegerField(primary_key=True)
