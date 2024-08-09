@@ -631,6 +631,9 @@
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("ewes_cart").disabled = true
+            document.getElementById("taymour_cart").disabled = true
+            document.getElementById("fass_cart").disabled = true
             fetch("https://iftarramadan.onrender.com/client_portal/prices", {
                 method: "GET"
             })
@@ -645,12 +648,15 @@
                 for(i = 0; i < data.length; ++i){
                     if(data[i].name === "Ewes"){
                         document.getElementById("ewes_price").innerHTML = `${data[i].price} EGP`
+                        document.getElementById("ewes_cart").disabled = false
                     }
                     if(data[i].name === "Taymour"){
                         document.getElementById("taymour_price").innerHTML = `${data[i].price} EGP`
+                        document.getElementById("taymour_cart").disabled = false
                     }
                     if(data[i].name === "Fass"){
                         document.getElementById("fass_price").innerHTML = `${data[i].price} EGP`
+                        document.getElementById("fass_price").disabled = false
                     }
                 }
             })
