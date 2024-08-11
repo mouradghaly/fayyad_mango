@@ -605,7 +605,7 @@
             HarvestedData.append("order_description", order_description)
             HarvestedData.append("number", number)
             HarvestedData.append("total", total)
-            document.getElementById("submit").disabled = "true"
+            document.getElementById("submit").disabled = true
             fetch("https://iftarramadan.onrender.com/client_portal/", {
                 method: "POST", 
                 body: HarvestedData
