@@ -454,7 +454,7 @@
                         counter++;
                         panel.innerHTML += `<div class='order_item'>
                             <ul>
-                                <li> ${Item[counter-1]}__${Quantity[counter-1]}kg ${Price[counter-1] __EGP </li>
+                                <li> ${Item[counter-1]}__${Quantity[counter-1]}kg ${Price[counter-1]}__EGP </li>
                             </ul>
                             </div>`;
                         description.value += `${Item[counter-1]} ${Quantity[counter-1]} kg; `
@@ -466,7 +466,7 @@
                         var price = document.getElementById("fass_price").innerHTML;
                         Item.push("Fass");
                         Quantity.push(parseFloat(quantity));
-                        Price.push(parseInt(price) * parseFloat(quantity));
+                        Price.push(parseInt(price));
                         x.style.display = "block";
                         counter++;
                         panel.innerHTML += `<div class='order_item'>
@@ -654,7 +654,7 @@
                     }
                     if(data[i].name === "Fass"){
                         document.getElementById("fass_price").innerHTML = `${data[i].price} EGP`
-                        document.getElementById("fass_price").disabled = false
+                        document.getElementById("fass_cart").disabled = false
                     }
                 }
             })
