@@ -267,7 +267,7 @@ admin_panel.addEventListener('click', (event) => {
                 button_outfordelivery_id = `d${data[i].id}`
                 button_delivered = `a${data[i].id}`
                 button_arrived = "Delivered"
-                document.getElementById("list").innerHTML += `<ol  class = "order" id="list">  ${data[i].id} ${data[i].name} ${data[i].lastname} ${data[i].description} ${data[i].phonenumber}  <button class="prepared" id= ${button_prepared_id}> ${button_prepared}</button> <button class="delivering" id= ${button_outfordelivery_id}> ${button_outfordelivery}</button> <button class="delivered" id=${button_delivered}>${button_arrived}</button>  </ol>`;
+                document.getElementById("list").innerHTML += `<ol  class = "order" id="list">  ${data[i].id} ${data[i].name} ${data[i].lastname} ${data[i].description} ${data[i].phonenumber} ${data[i].address}  <button class="prepared" id= ${button_prepared_id}> ${button_prepared}</button> <button class="delivering" id= ${button_outfordelivery_id}> ${button_outfordelivery}</button> <button class="delivered" id=${button_delivered}>${button_arrived}</button>  </ol>`;
                 if(data[i].status ==="Prepared"){
                     document.getElementById(`${button_prepared_id}`).style.color = "green"
                     document.getElementById(`${button_outfordelivery_id}`).style.color = "red"
