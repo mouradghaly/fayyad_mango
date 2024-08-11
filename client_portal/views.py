@@ -83,7 +83,7 @@ def dashboard(request):
         unfulfilled_orders = []
         for order in mymodel:
             if order.order_status != "Delivered":
-                orders.append({"id": order.id, "name": order.name, "lastname": order.lastname, "phonenumber": order.phonenumber, "description": order.order_description, "status": order.order_status, "address": order.address})
+                orders.append({"id": order.id, "name": order.name, "lastname": order.lastname, "phonenumber": order.phonenumber, "description": order.order_description, "status": order.order_status, "address": order.address, "total": order.total})
         return JsonResponse(orders, safe=False)
     
 def dashboard_complete(request):
